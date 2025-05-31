@@ -1,0 +1,27 @@
+@use "./mixins/index" as *;
+
+$flex-directions: (row, row-reverse, column, column-reverse);
+@include generate-responsive-utils(
+  "flex-dir",
+  flex-direction,
+  $flex-directions
+);
+
+$align-items: (start, center, end, stretch, baseline, flex-start, flex-end);
+@include generate-responsive-utils("items", align-items, $align-items);
+
+$justify-content: (
+  start,
+  center,
+  end,
+  space-between,
+  space-around,
+  space-evenly,
+  flex-start,
+  flex-end
+);
+@include generate-responsive-utils(
+  "justify",
+  justify-content,
+  $justify-content
+);

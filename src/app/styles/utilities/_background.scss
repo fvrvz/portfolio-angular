@@ -1,0 +1,11 @@
+@use "colors" as *;
+@use "mixins/index" as *;
+
+@include generate-responsive-utils("bg", "background-color", $colors);
+
+@include generate-state-utils(
+  "hover\:bg",
+  "background-color",
+  $colors,
+  ":hover"
+);

@@ -1,0 +1,32 @@
+@use "./mixins/index" as *;
+@use "colors" as *;
+
+$font-sizes: (
+  xs: 0.75rem,
+  sm: 0.875rem,
+  base: 1rem,
+  lg: 1.125rem,
+  xl: 1.25rem,
+  2xl: 1.5rem,
+);
+
+@include generate-responsive-utils("text", "font-size", $font-sizes);
+
+$font-weights: (
+  thin: 100,
+  normal: 400,
+  bold: 700,
+);
+
+@include generate-responsive-utils("font", "font-weight", $font-weights);
+
+$text-aligns: (
+  left: left,
+  center: center,
+  right: right,
+  justify: justify,
+);
+
+@include generate-responsive-utils("text-align", "text-align", $text-aligns);
+
+@include generate-responsive-utils("text", "color", $colors);

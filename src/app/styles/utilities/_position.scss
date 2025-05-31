@@ -1,0 +1,9 @@
+@use "./mixins/index" as *;
+
+// === Position ===
+$position-values: (static, relative, absolute, fixed, sticky);
+@include generate-responsive-utils("pos", position, $position-values);
+
+// === Z-index (basic scale) ===
+$z-index-values: (0, 10, 20, 30, 50, 100);
+@include generate-responsive-utils(z, z-index, $z-index-values);

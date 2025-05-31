@@ -1,0 +1,62 @@
+@use "sass:string";
+@use "sass:list";
+@use "sass:meta";
+
+// Breakpoints
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+// Universal responsive + unit-aware mixin
+@mixin generate-responsive-utils(
+  $prefix,
+  $property,
+  $values,
+  $unit: null,
+  $value-fn: null
+) {
+  @each $item in $values {
+    $key: if(
+      meta.type-of($item) == "list" and list.length($item) == 2,
+      list.nth($item, 1),
+      $item
+    );
+    $val: if(
+      meta.type-of($item) == "list" and list.length($item) == 2,
+      list.nth($item, 2),
+      $item
+    );
+
+    // If value-fn is provided, call it with $key and $val to get final value
+    $final-val: null;
+    @if $value-fn != null {
+      $final-val: meta.call($value-fn, "" + $key, $val);
+    } @else {
+      $final-val: if($unit != null, string.unquote("#{$val}#{$unit}"), $val);
+    }
+
+    .#{$prefix}-#{"" + $key} {
+      #{$property}: #{$final-val};
+    }
+
+    @each $bp, $min-width in $breakpoints {
+      @media (min-width: #{$min-width}) {
+        .#{$bp}\:#{$prefix}-#{"" + $key} {
+          #{$property}: $final-val;
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-state-utils($prefix, $property, $map, $pseudo: null) {
+  @each $key, $val in $map {
+    $final-val: if(meta.type-of($val) == "string", $val, $val);
+    .#{$prefix}-#{"" + $key}#{$pseudo} {
+      #{$property}: $final-val;
+    }
+  }
+}

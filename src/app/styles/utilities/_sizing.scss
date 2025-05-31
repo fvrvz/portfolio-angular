@@ -1,0 +1,13 @@
+@use "./mixins/index" as *;
+
+$sizes: (25, 50, 75, 100);
+
+$properties: (
+  h: height,
+  w: width,
+);
+@each $key, $prop in $properties {
+  @include generate-responsive-utils($key, $prop, $sizes, "%");
+  @include generate-responsive-utils("v#{$key}", $prop, $sizes, v#{$key});
+  @include generate-responsive-utils("dv#{$key}", $prop, $sizes, dv#{$key});
+}

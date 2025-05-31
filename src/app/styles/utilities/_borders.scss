@@ -1,0 +1,90 @@
+@use "mixins/index" as *;
+@use "colors" as *;
+
+// === Border Widths ===
+$border-widths: (
+  0: 0,
+  1: 1px,
+  2: 2px,
+  4: 4px,
+  8: 8px,
+);
+
+// === Border Radius ===
+$border-radius: (
+  none: 0,
+  sm: 0.125rem,
+  md: 0.375rem,
+  lg: 0.5rem,
+  full: 9999px,
+);
+
+// === Border Styles (optional)
+$border-styles: (solid, dashed, dotted, double, none);
+
+// --- Core Utilities ---
+@include generate-responsive-utils("border", "border-width", $border-widths);
+@include generate-responsive-utils("rounded", "border-radius", $border-radius);
+@include generate-responsive-utils(
+  "border-style",
+  "border-style",
+  $border-styles
+);
+@include generate-responsive-utils("border-color", "border-color", $colors);
+
+// --- Border Width per Side ---
+@each $dir,
+  $prop
+    in (
+      t: border-top-width,
+      r: border-right-width,
+      b: border-bottom-width,
+      l: border-left-width
+    )
+{
+  @include generate-responsive-utils("border-#{$dir}", $prop, $border-widths);
+}
+
+// --- Border Radius per Corner ---
+@each $dir,
+  $prop
+    in (
+      t: border-top-left-radius,
+      r: border-top-right-radius,
+      b: border-bottom-right-radius,
+      l: border-bottom-left-radius,
+      tr: border-top-right-radius,
+      br: border-bottom-right-radius,
+      bl: border-bottom-left-radius,
+      tl: border-top-left-radius
+    )
+{
+  @include generate-responsive-utils("rounded-#{$dir}", $prop, $border-radius);
+}
+
+// --- Border Color per Side ---
+@each $dir,
+  $prop
+    in (
+      tc: border-top-color,
+      rc: border-right-color,
+      bc: border-bottom-color,
+      lc: border-left-color
+    )
+{
+  @include generate-responsive-utils("border-#{$dir}", $prop, $colors);
+}
+
+// --- Full border shorthand (border: none, border: 1px solid ...)
+$border-presets: (
+  default: 1px solid #ccc,
+  none: none,
+);
+@include generate-responsive-utils("border", "border", $border-presets);
+
+@include generate-state-utils(
+  "focus\:border",
+  "border-color",
+  $colors,
+  ":focus"
+);

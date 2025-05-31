@@ -1,0 +1,5 @@
+@use "sass:string";
+
+@function repeat-1fr($key, $val) {
+  @return string.unquote("repeat(#{$key}, 1fr)");
+}

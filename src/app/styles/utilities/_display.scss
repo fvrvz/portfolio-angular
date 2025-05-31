@@ -1,0 +1,13 @@
+@use "./mixins/index" as *;
+
+$display-values: (
+  block,
+  inline,
+  inline-block,
+  flex,
+  inline-flex,
+  grid,
+  inline-grid,
+  none
+);
+@include generate-responsive-utils(d, display, $display-values);
