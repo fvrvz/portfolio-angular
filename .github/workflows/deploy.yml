@@ -37,7 +37,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Angular SSG
-        run: pnpm run build -- --base-href=/portfolio-angular/
+        run: pnpm exec ng build --base-href=/portfolio-angular/
 
       - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
