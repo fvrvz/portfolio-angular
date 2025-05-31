@@ -1,9 +1,10 @@
-name: Deploy Angular Portfolio SSG to GitHub Pages
+name: develop
 
 on:
   push:
     branches:
       - develop
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
