@@ -1,10 +1,15 @@
 .header {
-  color: white;
-  background-color: black;
+  color: var(--color-red);
+
+  h1 {
+    cursor: pointer;
+  }
 }
 
 .nav {
-  ul {
-    list-style: none;
+  margin: 0 auto;
+  a {
+    text-decoration: none;
+    color: var(--color-blue);
   }
 }
