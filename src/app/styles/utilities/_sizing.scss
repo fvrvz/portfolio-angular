@@ -1,13 +1,16 @@
-@use "./mixins/index" as *;
+@use './mixins/index' as *;
+@use './functions/index' as *;
 
 $sizes: (25, 50, 75, 100);
+$max-sizes: generate-max-sizes(50, 1250, 50);
 
 $properties: (
   h: height,
   w: width,
 );
 @each $key, $prop in $properties {
-  @include generate-responsive-utils($key, $prop, $sizes, "%");
-  @include generate-responsive-utils("v#{$key}", $prop, $sizes, v#{$key});
-  @include generate-responsive-utils("dv#{$key}", $prop, $sizes, dv#{$key});
+  @include generate-responsive-utils($key, $prop, $sizes, '%');
+  @include generate-responsive-utils('v#{$key}', $prop, $sizes, v#{$key});
+  @include generate-responsive-utils('dv#{$key}', $prop, $sizes, dv#{$key});
+  @include generate-responsive-utils('max-#{$key}', 'max-#{$prop}', $max-sizes, 'px');
 }
