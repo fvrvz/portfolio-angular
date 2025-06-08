@@ -15,7 +15,6 @@ export class ToggleSwitch {
     effect(() => {
       const value = this.initialValue();
       this.isEnable.set(value);
-      console.log('Effect input:', value);
     });
   }
 

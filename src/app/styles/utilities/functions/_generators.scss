@@ -1,0 +1,11 @@
+@use 'sass:list';
+
+@function generate-max-sizes($start, $end, $step) {
+  $list: ();
+  @for $i from $start through $end {
+    @if (($i - $start) % $step == 0) {
+      $list: list.append($list, $i);
+    }
+  }
+  @return $list;
+}
